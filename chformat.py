@@ -34,14 +34,18 @@ def trim_words(text, max_words):
     return " ".join(words[:max_words]) + "..."
 
 
-def format_record(record, term_width, trim=None):
+def format_record(record, term_width, trim=None, show_timestamp=True):
     """Return a formatted string for one record."""
-    ts_str = parse_timestamp(record.get("timestamp", 0))
     display = str(record.get("display", ""))
 
     if trim is not None:
         display = trim_words(display, trim)
 
+    if not show_timestamp:
+        lines = textwrap.wrap(display, width=term_width) if display.strip() else [""]
+        return "\n".join(lines)
+
+    ts_str = parse_timestamp(record.get("timestamp", 0))
     separator = "  "
     indent = " " * (len(ts_str) + len(separator))
     text_width = max(term_width - len(indent), 20)
@@ -120,6 +124,11 @@ def main():
     parser.add_argument("file", help="JSON file to read")
     parser.add_argument("--trim", type=int, metavar="N",
                         help="Truncate display text to N words, appending '...' if trimmed")
+    ts_group = parser.add_mutually_exclusive_group()
+    ts_group.add_argument("--timestamp", dest="show_timestamp", action="store_true",
+                          default=True, help="Show timestamp before each record (default)")
+    ts_group.add_argument("--notimestamp", dest="show_timestamp", action="store_false",
+                          help="Omit timestamp and use full terminal width for display text")
     args = parser.parse_args()
 
     filename = args.file
@@ -145,7 +154,8 @@ def main():
     for i, record in enumerate(records):
         if i > 0:
             print()
-        print(format_record(record, term_width, trim=args.trim))
+        print(format_record(record, term_width, trim=args.trim,
+                            show_timestamp=args.show_timestamp))
 
 
 if __name__ == "__main__":

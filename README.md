@@ -4,13 +4,17 @@ A command-line tool to convert a Claude Code history file to readable format.
 
 ## Usage
 
-python3 chformat.py <history-file-name> [--trim NN]
+python3 chformat.py <history-file-name> [--trim NN] [--timestamp | --notimestamp]
 
 where
 
-<history-file-Rame>: path/filename of the Claude Code history file
+<history-file-name>: path/filename of the Claude Code history file
 
 [--trim NN]: display only the first NN words of each prompt
+
+[--timestamp]: show timestamp before each record (default)
+
+[--notimestamp]: omit timestamp and use the full terminal width for display text
 
 ## Background
 
@@ -54,7 +58,7 @@ The text wraps to fit the terminal width.
 ## Usage
 
 ```
-python3 chformat.py [--trim N] <file>
+python3 chformat.py [--trim N] [--timestamp | --notimestamp] <file>
 ```
 
 ### Options
@@ -62,6 +66,8 @@ python3 chformat.py [--trim N] <file>
 | Option | Description |
 |--------|-------------|
 | `--trim N` | Truncate display text to N words, appending `...` if trimmed |
+| `--timestamp` | Show timestamp before each record (default) |
+| `--notimestamp` | Omit timestamp and use full terminal width for display text |
 
 ### Examples
 
@@ -71,6 +77,9 @@ python3 chformat.py history.json
 
 # Show only the first 20 words of each record's display text
 python3 chformat.py --trim 20 history.json
+
+# Show display text only, no timestamps, full terminal width
+python3 chformat.py --notimestamp history.json
 ```
 
 ## Files
