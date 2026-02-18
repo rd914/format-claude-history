@@ -34,7 +34,7 @@ The text wraps to fit the terminal width.
 ## Usage
 
 ```
-python3 chformat [--trim N] <file>
+python3 chformat.py [--trim N] <file>
 ```
 
 ### Options
@@ -47,10 +47,10 @@ python3 chformat [--trim N] <file>
 
 ```bash
 # Display all records
-python3 chformat history.json
+python3 chformat.py history.json
 
 # Show only the first 20 words of each record's display text
-python3 chformat --trim 20 history.json
+python3 chformat.py --trim 20 history.json
 ```
 
 ## Requirements
