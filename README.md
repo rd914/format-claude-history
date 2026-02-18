@@ -1,7 +1,27 @@
 # chformat
 
-A command-line tool that converts a JSON file of timestamped records into a
-human-readable, word-wrapped format.
+A command-line tool to convert a Claude Code history file to readable format.
+
+## Usage
+
+python3 chformat.py <history-file-name> [--trim NN]
+
+where
+
+<history-file-Rame>: path/filename of the Claude Code history file
+
+[--trim NN]: display only the first NN words of each prompt
+
+## Background
+
+Claude Code creates a file with a history of every prompt it is given. It can be
+interesting but it's hard to read because it's a JSON file, with one JSON object
+per prompt and the entire object on one line. Also, the date and time are
+represented by an integer timestamp in milliseconds after the Unix epoch.
+
+This program converts the file into a human-readable format, optionally
+truncating long prompts (some can be _very_ long, especially the "plans" written
+by Claude for complex changes).
 
 ## Input format
 
@@ -52,6 +72,12 @@ python3 chformat.py history.json
 # Show only the first 20 words of each record's display text
 python3 chformat.py --trim 20 history.json
 ```
+
+## Files
+
+- MacOS: /home/<userid>/.claude/history.jsonl
+
+- Microsoft Windows: /Users/<userid>/.claude/history.jsonl
 
 ## Requirements
 
