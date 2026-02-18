@@ -4,11 +4,11 @@ A command-line tool to convert a Claude Code history file to readable format.
 
 ## Usage
 
-python3 chformat.py <history-file-name> [--trim NN] [--timestamp | --notimestamp]
+python3 chformat.py _history-file_ [--trim NN] [--timestamp | --notimestamp]
 
 where
 
-<history-file-name>: path/filename of the Claude Code history file
+_history-file_: path/filename of the Claude Code history file
 
 [--trim NN]: display only the first NN words of each prompt
 
