@@ -1,4 +1,4 @@
-# jsonview
+# chformat
 
 A command-line tool that converts a JSON file of timestamped records into a
 human-readable, word-wrapped format.
@@ -34,7 +34,7 @@ The text wraps to fit the terminal width.
 ## Usage
 
 ```
-python3 jsonview.py [--trim N] <file>
+python3 chformat [--trim N] <file>
 ```
 
 ### Options
@@ -47,10 +47,10 @@ python3 jsonview.py [--trim N] <file>
 
 ```bash
 # Display all records
-python3 jsonview.py history.json
+python3 chformat history.json
 
 # Show only the first 20 words of each record's display text
-python3 jsonview.py --trim 20 history.json
+python3 chformat --trim 20 history.json
 ```
 
 ## Requirements
